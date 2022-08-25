@@ -14,7 +14,7 @@
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <script src="https://cdns.gigya.com/js/gigya.js?apikey=4_oMwlIxZWipk7JkeWZ-b2LA"></script>
+    <script src="https://cdns.gigya.com/js/gigya.js?apiKey=4_zU_l5sFaCUWaU5W-0KFDzw"></script>
 
 
 </head>
@@ -25,21 +25,19 @@
     <script type="text/javascript">
 
 
-        function services(flag) {
-
-            if (flag == "Ordering") {
-
-
-                //alert("your Ordering site will be open in new tab");
-                window.open("Ordering.html", "_blank");
-            }
-
-            if (flag == "Returns") {
-
-
-                window.open("Returns.html", "_blank");
-            }
+        var querySigServer = "JpvRlfmE6xSu/+SHkU6OdaRY0cuMtwim94iCX3MHEBA=";
+        var expTimeServer = "<Injected_by_Server>";
+        function showSearchInfo(response) {
+            alert(JSON.stringify(response));
         }
+        var searchParams = {
+            query: "SELECT profile.firstName,profile.lastName FROM accounts'",
+            querySig: querySigServer,
+            //expTime: expTimeServer,
+            callback: showSearchInfo
+        };
+        gigya.accounts.search(searchParams);
+
 
         var session_UID = AdminCheckLogin();
         if (session_UID != null || typeof session_UID != "undefined") {
@@ -49,7 +47,7 @@
                 "<div class=\"col-lg-7 order-2 order-lg-1 d-flex align-items-center\">" +
                 "<div data-aos=\"zoom-out\" class=\"aos-init aos-animate\">" +
                 //"<h1>Empower your organization with CIAM POC </h1></div></div></div></section ></td></tr><tr><td>";
-                "<h1 style=\"font-family:arial\">Welcome to B2B Admin Portal </h1></div></div></div></section ></td></tr><tr><td>"
+                "<h1 style=\"font-family:arial\">Welcome to B2C Admin Portal </h1></div></div></div></section ></td></tr><tr><td>"
 
 
             //mytable +=
@@ -84,7 +82,7 @@
             //}
             //})
 
-            //console.log(mytable);
+            console.log(mytable);
 
             mytable += "<td><h1>Work in Progress..</h1></td></tr></table></div></div></section ></td></tr><tr><td>"
             mytable +=

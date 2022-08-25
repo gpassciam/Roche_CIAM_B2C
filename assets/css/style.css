@@ -17,6 +17,7 @@ body {
 a {
   color: #1977cc;
   text-decoration: none;
+  font-size: 14px
 }
 
 a:hover {
@@ -218,16 +219,16 @@ p
 * Appointment Button *
 */
 .appointment-btn {
- /*margin-left: 25px;*/
-  background: #1977cc;
-  color: #fff;
-  border-radius: 50px;
-  padding: 8px 25px;
-  white-space: nowrap;
-  transition: 0.3s;
-  font-size: 16px small;
-  display: inline-block;
- 
+    /*margin-left: 25px;*/
+    background: #1977cc;
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 16px small;
+    display: inline-block;
+    border-color: #1977cc
 }
 
 .appointment-ordering {
@@ -504,7 +505,7 @@ p
   
   background: url("../img/hero-bg.jpg") top center;
   background-size:cover;
-  height:709px
+  height:700px
   
 }
 
@@ -523,7 +524,7 @@ p
 
 #hero h1 {
   margin: 0;
-  font-size: 48px;
+  font-size: 35px;
   font-weight: 700;
   line-height: 56px;
   /*text-transform: uppercase*/
@@ -532,13 +533,16 @@ p
 }
 
 #ord-ret-hero h1 {
+    
     margin: 0;
-    font-size: 48px;
+    font-size: 35px;
     font-weight: 700;
     line-height: 56px;
-    margin-top: 15px;
+    /*text-transform: uppercase*/
     color: #2c4964;
+    font-family: Arial
 }
+
 
 #hero h2 {
   color: #2c4964;
@@ -2047,7 +2051,7 @@ p-section {
 }
 
     .cont.blur {
-        filter: blur(5px);
+        /*filter: blur(5px);*/
     }
 
 .modal {
@@ -2065,9 +2069,9 @@ p-section {
 
     .modal .content {
         position: relative;
-        padding: 10px;
+        /*padding: 10px;*/
         width: 400px;
-        height: 300px;
+        height: 250px;
         border-radius: 8px;
         background-color: #fff;
         box-shadow: rgba(112, 128, 175, 0.2) 0px 16px 24px 0px;
@@ -2079,8 +2083,8 @@ p-section {
         position: absolute;
         top: 5px;
         right: 5px;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         cursor: pointer;
         border-radius: 8px;
         background-color: #7080af;
@@ -2095,3 +2099,42 @@ p-section {
         .modal.open .content {
             transform: scale(1);
         }
+
+
+
+/*Gigya Styles*/
+
+.gigya-screen-dialog-top {
+    overflow: hidden;
+    zoom: 1;
+    background-color: #1371B9;
+    line-height: 38px;
+    padding: 0 10px 0 11px;
+    border-radius: 3px 3px 0px 0px
+}
+
+.gigya-header {
+    float: left;
+    font-size: 19px;
+    font-family: arial;
+    color: #FFFFFF;
+    padding-right: 20px;
+}
+
+.gigya-padding-bottom {
+    padding-bottom: 5px;
+}
+
+.gigya-textbox {
+    margin-bottom: 13px;
+    width: 90%;
+    border-radius: 4.5px;
+    border: 1px solid #b6bdc5;
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    height: 40px;
+    text-indent: 5px;
+    font-size: 15px;
+    font-family: Arial;
+    margin-left: 20px
+}
