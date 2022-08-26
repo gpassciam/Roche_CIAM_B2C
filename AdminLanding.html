@@ -31,7 +31,7 @@
 
 
         //var method = "accounts.search";
-        var query = "SELECT * FROM accounts WHERE profile.gender='m' AND profile.age > 25";
+        var query = "SELECT UID,profile.firstName,profile.LastName,profile.email  FROM accounts";
         const url = 'https://accounts.us1.gigya.com/accounts.search?apiKey=4_zU_l5sFaCUWaU5W-0KFDzw&secret=JpvRlfmE6xSu%2F%2BSHkU6OdaRY0cuMtwim94iCX3MHEBA%3D&query=SELECT%20profile.firstName,UID%20FROM%20accounts';
 
         var xhr = new XMLHttpRequest();
