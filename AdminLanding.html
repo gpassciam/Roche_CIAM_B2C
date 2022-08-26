@@ -21,19 +21,17 @@
 <body onload="Adminload();">
 
 
-    <table>
-        <tbody id="js-table">
-        </tbody>
-    </table>
+    
     <script type="text/javascript">
         var apiKey = "4_zU_l5sFaCUWaU5W-0KFDzw";
-        var secretKey = "JpvRlfmE6xSu/+SHkU6OdaRY0cuMtwim94iCX3MHEBA=";
+        var secretKey = "JpvRlfmE6xSu%2F%2BSHkU6OdaRY0cuMtwim94iCX3MHEBA%3D";
 
 
         //var method = "accounts.search";
-        var query = "SELECT UID,profile.firstName,profile.LastName,profile.email  FROM accounts";
-        const url = 'https://accounts.us1.gigya.com/accounts.search?apiKey=4_zU_l5sFaCUWaU5W-0KFDzw&secret=JpvRlfmE6xSu%2F%2BSHkU6OdaRY0cuMtwim94iCX3MHEBA%3D&query=SELECT%20profile.firstName,UID%20FROM%20accounts';
-
+        var query = "SELECT UID,profile.firstName,profile.lastName,profile.email  FROM accounts";
+        //const url = 'https://accounts.us1.gigya.com/accounts.search?apiKey=4_zU_l5sFaCUWaU5W-0KFDzw&secret=JpvRlfmE6xSu%2F%2BSHkU6OdaRY0cuMtwim94iCX3MHEBA%3D&query=SELECT%20profile.firstName,UID%20FROM%20accounts';
+        const url = "https://accounts.us1.gigya.com/accounts.search?apiKey=" + apiKey + "&secret=" + secretKey + "&query=" + query;
+        alert(url);
         var xhr = new XMLHttpRequest();
         //var params = 'querySig=' + query + '_' + abs(now - timestamp) ;
         xhr.open('POST', url, true);
@@ -44,32 +42,41 @@
         xhr.onload = function () {//Call a function when the state changes.
             if (xhr.status == 200) {
                 //alert(this.responseText["result"]);
+                var mytable = "<table class=\"table\" border=1><tr>" +
+                    "<td class=\"table td\"> UID</td>" +
+                    "<td>firstName</td>" +
+                    "<td>LastName</td>" +
+                    "<td>Email</td>" +
+                    "</tr>";
                 const response = JSON.parse(this.responseText);
                 if (response["errorCode"] == 0) {
                     var final;
+                    var keys;
                     const responses = response["results"];
+                    //alert(JSON.stringify(responses));
                     Object.entries(responses).forEach((entry) => {
+
                         const [key, value] = entry;
                         //console.log(key);
-                        console.log(JSON.stringify(value));
-                        final = JSON.stringify(value);
+                        mytable += "<tr>" +
+                            "<td> " + JSON.stringify(value.UID).replace('"', '').replace('"', '') + "</td>" +
+                            "<td> " + JSON.stringify(value.profile.firstName).replace('"', '').replace('"', '') + "</td >" +
+                            "<td> " + JSON.stringify(value.profile.lastName).replace('"', '').replace('"', '') + "</td >" +
+                            "<td> " + JSON.stringify(value.profile.email).replace('"', '').replace('"', '') + "</td >";
+                        //console.log(JSON.stringify(value));
+                        //final = final + JSON.stringify(value.profile);
+                        
+                        //final = value;
+                        //alert(final);
+                        //keys = JSON.stringify(value);
                     });
 
-                    const createTable = (json) => {
-                        let table = document.getElementById('js-table')
-
-                        for (let row of json) {
-                            let newRow = table.insertRow();
-                            for (let cell of Object.values(row)) {
-                                let newCell = newRow.insertCell();
-                                let newText = document.createTextNode(cell);
-                                newCell.appendChild(newText);
-                            }
-                        }
-                    }
-
-                    createTable(final)
-
+                    //console.log(final);
+                    //var myStrObj = final;
+                    //var myHtmlTableObj = myStrObj.replace(/{/g, "<table><tr><td>").replace(/:/g, "</td><td>", "g").replace(/,/g, "</td></tr><tr><td>", "g").replace(/}/g, "</table>")
+                    //alert(myHtmlTableObj);
+                    //alert(mytable);
+                    $('#data').html(mytable);
 
                 }
 
@@ -147,7 +154,9 @@
 
             console.log(mytable);
 
-            mytable += "<td><h1>Work in Progress..</h1></td></tr></table></div></div></section ></td></tr><tr><td>"
+            //mytable += "<td><h1>Work in Progress..</h1></td></tr></table></div></div></section ></td></tr><tr><td>"
+
+            mytable += "<td><div style=\"width:100%\" id=\"data\"></div></td></tr></table></div></div></section ></td></tr><tr><td>"
             mytable +=
                 "<hr style=\"height: 420px;visibility: hidden\" /><div id=\"footer\"></div>" +
                 "</td></tr ></tbody ></table >";
