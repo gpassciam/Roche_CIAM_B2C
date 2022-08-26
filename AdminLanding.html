@@ -21,26 +21,89 @@
 <body onload="Adminload();">
 
 
-
+    <table>
+        <tbody id="js-table">
+        </tbody>
+    </table>
     <script type="text/javascript">
+        var apiKey = "4_zU_l5sFaCUWaU5W-0KFDzw";
+        var secretKey = "JpvRlfmE6xSu/+SHkU6OdaRY0cuMtwim94iCX3MHEBA=";
 
 
-        var querySigServer = "JpvRlfmE6xSu/+SHkU6OdaRY0cuMtwim94iCX3MHEBA=";
-        var expTimeServer = "<Injected_by_Server>";
-        function showSearchInfo(response) {
-            alert(JSON.stringify(response));
+        //var method = "accounts.search";
+        var query = "SELECT * FROM accounts WHERE profile.gender='m' AND profile.age > 25";
+        const url = 'https://accounts.us1.gigya.com/accounts.search?apiKey=4_zU_l5sFaCUWaU5W-0KFDzw&secret=JpvRlfmE6xSu%2F%2BSHkU6OdaRY0cuMtwim94iCX3MHEBA%3D&query=SELECT%20profile.firstName,UID%20FROM%20accounts';
+
+        var xhr = new XMLHttpRequest();
+        //var params = 'querySig=' + query + '_' + abs(now - timestamp) ;
+        xhr.open('POST', url, true);
+
+        //Send the proper header information along with the request
+        //xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function () {//Call a function when the state changes.
+            if (xhr.status == 200) {
+                //alert(this.responseText["result"]);
+                const response = JSON.parse(this.responseText);
+                if (response["errorCode"] == 0) {
+                    var final;
+                    const responses = response["results"];
+                    Object.entries(responses).forEach((entry) => {
+                        const [key, value] = entry;
+                        //console.log(key);
+                        console.log(JSON.stringify(value));
+                        final = JSON.stringify(value);
+                    });
+
+                    const createTable = (json) => {
+                        let table = document.getElementById('js-table')
+
+                        for (let row of json) {
+                            let newRow = table.insertRow();
+                            for (let cell of Object.values(row)) {
+                                let newCell = newRow.insertCell();
+                                let newText = document.createTextNode(cell);
+                                newCell.appendChild(newText);
+                            }
+                        }
+                    }
+
+                    createTable(final)
+
+
+                }
+
+                else {
+
+                }
+
+
+            }
         }
-        var searchParams = {
-            query: "SELECT profile.firstName,profile.lastName FROM accounts'",
-            querySig: querySigServer,
-            //expTime: expTimeServer,
-            callback: showSearchInfo
-        };
-        gigya.accounts.search(searchParams);
+        xhr.send();
+
+
+
+
+
+        //var querySigServer = "JpvRlfmE6xSu/+SHkU6OdaRY0cuMtwim94iCX3MHEBA=";
+        //var expTimeServer = "<Injected_by_Server>";
+        //function showSearchInfo(response) {
+        //    alert(JSON.stringify(response));
+        //}
+        //var searchParams = {
+        //    query: "SELECT profile.firstName,profile.lastName FROM accounts'",
+        //    querySig: querySigServer,
+        //    //expTime: expTimeServer,
+        //    callback: showSearchInfo
+        //};
+        //gigya.accounts.search(searchParams);
 
 
         var session_UID = AdminCheckLogin();
         if (session_UID != null || typeof session_UID != "undefined") {
+
+
             var mytable = "<table width=\"100%\"><tbody><tr><td><div id=\"header\"></div></td></tr><tr><td><section id=\"ord-ret-hero\">" +
 
                 "<div class=\"container\">" +
@@ -51,7 +114,7 @@
 
 
             //mytable +=
-              //  "<section id=\"services\" class=\"services\"><div class=\"container\"><div class=\"section-title\"><h2 id=\"dname\"></h2></div><div align=\"center\">"
+            //  "<section id=\"services\" class=\"services\"><div class=\"container\"><div class=\"section-title\"><h2 id=\"dname\"></h2></div><div align=\"center\">"
 
             //mytable +=
             //    "<section id=\"services\" class=\"services\"><div class=\"container\"><div class=\"section-title\"><h2 id=\"dname\"></h2><p style=\"text-colour:white\">You are in B2B Portal.<br/>Below are the list of applications which you have access.</p></div><div class=\"row\">"
