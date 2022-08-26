@@ -2152,11 +2152,22 @@ p-section {
 .table {
     border-collapse: collapse;
     width: 100%;
+    
+    
 }
 
-.table th td {
-    text-align: left;
-    padding: 8px;
+    .table th {
+        text-align: left;
+        font-family: 'arial';
+        padding: 8px;
+        background-color: #1371B9;
+        color:white
+    }
+
+.table td {
+        text-align: left;
+        font-family: 'Times New Roman';
+        padding: 8px;
 }
 
 .table tr:nth-child(even) {

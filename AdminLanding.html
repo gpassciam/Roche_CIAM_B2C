@@ -20,7 +20,32 @@
 </head>
 <body onload="Adminload();">
 
-
+    
+    <table width="100%">
+        <tr>
+            <td>
+                <div id="header"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <section id="ord-ret-hero">
+                    <h1 style="font-family:arial">Welcome to B2C Admin Portal </h1>
+                </section>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="data"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="footer"></div>
+            </td>
+        </tr>
+    </table>
+    
     
     <script type="text/javascript">
         var apiKey = "4_zU_l5sFaCUWaU5W-0KFDzw";
@@ -31,7 +56,7 @@
         var query = "SELECT UID,profile.firstName,profile.lastName,profile.email  FROM accounts";
         //const url = 'https://accounts.us1.gigya.com/accounts.search?apiKey=4_zU_l5sFaCUWaU5W-0KFDzw&secret=JpvRlfmE6xSu%2F%2BSHkU6OdaRY0cuMtwim94iCX3MHEBA%3D&query=SELECT%20profile.firstName,UID%20FROM%20accounts';
         const url = "https://accounts.us1.gigya.com/accounts.search?apiKey=" + apiKey + "&secret=" + secretKey + "&query=" + query;
-        alert(url);
+        //alert(url);
         var xhr = new XMLHttpRequest();
         //var params = 'querySig=' + query + '_' + abs(now - timestamp) ;
         xhr.open('POST', url, true);
@@ -43,10 +68,11 @@
             if (xhr.status == 200) {
                 //alert(this.responseText["result"]);
                 var mytable = "<table class=\"table\" border=1><tr>" +
-                    "<td class=\"table td\"> UID</td>" +
-                    "<td>firstName</td>" +
-                    "<td>LastName</td>" +
-                    "<td>Email</td>" +
+                    "<th> UID</th>" +
+                    "<th>First Name</th>" +
+                    "<th>Last Name</th>" +
+                    "<th>Email</th>" +
+                    "<th>Actions</th>" +
                     "</tr>";
                 const response = JSON.parse(this.responseText);
                 if (response["errorCode"] == 0) {
@@ -62,7 +88,9 @@
                             "<td> " + JSON.stringify(value.UID).replace('"', '').replace('"', '') + "</td>" +
                             "<td> " + JSON.stringify(value.profile.firstName).replace('"', '').replace('"', '') + "</td >" +
                             "<td> " + JSON.stringify(value.profile.lastName).replace('"', '').replace('"', '') + "</td >" +
-                            "<td> " + JSON.stringify(value.profile.email).replace('"', '').replace('"', '') + "</td >";
+                            "<td> " + JSON.stringify(value.profile.email).replace('"', '').replace('"', '') + "</td >" +
+                            "<td><button onclick=alert('" + JSON.stringify(value.UID).replace('"', '').replace('"', '') + "') class=\"appointment-btn\">Delete</button></td>";
+                        //alert(mytable);
                         //console.log(JSON.stringify(value));
                         //final = final + JSON.stringify(value.profile);
                         
@@ -111,7 +139,7 @@
         if (session_UID != null || typeof session_UID != "undefined") {
 
 
-            var mytable = "<table width=\"100%\"><tbody><tr><td><div id=\"header\"></div></td></tr><tr><td><section id=\"ord-ret-hero\">" +
+            var mytable = "<table width=\"100%\"><tbody><tr><td><section id=\"ord-ret-hero\">" +
 
                 "<div class=\"container\">" +
                 "<div class=\"col-lg-7 order-2 order-lg-1 d-flex align-items-center\">" +
@@ -161,7 +189,7 @@
                 "<hr style=\"height: 420px;visibility: hidden\" /><div id=\"footer\"></div>" +
                 "</td></tr ></tbody ></table >";
 
-            document.write(mytable);
+            //document.write(mytable);
 
 
             //document.getElementById("dname").innerText = "Welcome to B2C Portal";
