@@ -61,18 +61,39 @@
         //var params = 'querySig=' + query + '_' + abs(now - timestamp) ;
         xhr.open('POST', url, true);
 
-        //Send the proper header information along with the request
-        //xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        function deleteAccount(UID)
+        {
+            if (confirm('Are you sure you want to delete below account?\n' + UID)) {
+                const urld = "https://accounts.us1.gigya.com/accounts.deleteAccount?apiKey=" + apiKey + "&secret=" + secretKey + "&UID=" + UID;
+                
+                var xhrd = new XMLHttpRequest();
+                xhrd.open('GET', urld, true);
+                alert('here');
+                xhrd.onload = function () {//Call a function when the state changes.
+                    alert('now');
+                    if (xhr.errorCode == 0) {
+
+                        alert('Below account Deleted\n' + UID);
+                        location.reload();
+                    }
+                }
+            }
+           
+                else {
+                // Do nothing!
+                console.log('Thing was not saved to the database.');
+            }
+        }
 
         xhr.onload = function () {//Call a function when the state changes.
             if (xhr.status == 200) {
                 //alert(this.responseText["result"]);
                 var mytable = "<table class=\"table\" border=1><tr>" +
-                    "<th> UID</th>" +
+                    /*"<th> UID</th>" +*/
                     "<th>First Name</th>" +
                     "<th>Last Name</th>" +
                     "<th>Email</th>" +
-                    "<th>Actions</th>" +
+                    /*"<th>Actions</th>" +*/
                     "</tr>";
                 const response = JSON.parse(this.responseText);
                 if (response["errorCode"] == 0) {
@@ -85,11 +106,11 @@
                         const [key, value] = entry;
                         //console.log(key);
                         mytable += "<tr>" +
-                            "<td> " + JSON.stringify(value.UID).replace('"', '').replace('"', '') + "</td>" +
-                            "<td> " + JSON.stringify(value.profile.firstName).replace('"', '').replace('"', '') + "</td >" +
-                            "<td> " + JSON.stringify(value.profile.lastName).replace('"', '').replace('"', '') + "</td >" +
-                            "<td> " + JSON.stringify(value.profile.email).replace('"', '').replace('"', '') + "</td >" +
-                            "<td><button onclick=alert('" + JSON.stringify(value.UID).replace('"', '').replace('"', '') + "') class=\"appointment-btn\">Delete</button></td>";
+                            /*"<td> " + JSON.stringify(value.UID).replace('"', '').replace('"', '') + "</td>" +*/
+                            "<td> " + JSON.stringify(value.profile.firstName).replace(/"/g, "") + "</td >" +
+                            "<td> " + JSON.stringify(value.profile.lastName).replace(/"/g, "") + "</td >" +
+                            "<td> " + JSON.stringify(value.profile.email).replace(/"/g, "") + "</td >";
+                            /*"<td><button onclick=\"deleteAccount('" + JSON.stringify(value.UID).replace('"', '').replace('"', '') + "')\" class=\"appointment-btn\">Delete</button></td>";*/
                         //alert(mytable);
                         //console.log(JSON.stringify(value));
                         //final = final + JSON.stringify(value.profile);

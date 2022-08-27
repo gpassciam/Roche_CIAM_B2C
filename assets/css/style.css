@@ -512,7 +512,7 @@ p
 
 #ord-ret-hero {
     width: 100%;
-    height: 35vh;
+    height: 30vh;
     background: url("../img/hero-bg_banner.jpg") top no-repeat;
     background-size: cover;
     margin-bottom: 0px;
@@ -2105,7 +2105,7 @@ p-section {
 
 /*Gigya Styles*/
 
-.gigya-screen-dialog-top {
+.gigya-screen-dialog-topa {
     overflow: hidden;
     zoom: 1;
     background-color: #1371B9;
@@ -2160,8 +2160,8 @@ p-section {
         text-align: left;
         font-family: 'arial';
         padding: 8px;
-        background-color: #1371B9;
-        color:white
+        background-color: dimgrey;
+        color: white
     }
 
 .table td {
