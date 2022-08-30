@@ -336,7 +336,7 @@ function AdminLogin(flag) {
 
     if (flag == 'login') {
         //alert(sessionStorage.getItem("adminloginflag"));
-        if (document.getElementById("txtusr").value == "Ashok" && document.getElementById("txtpass").value == "Roche123") {
+        if (document.getElementById("txtusr").value == "admin" && document.getElementById("txtpass").value == "ciam123$") {
 
             sessionStorage.setItem("AdminSession", document.getElementById("txtusr").value);
            
