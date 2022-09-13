@@ -255,9 +255,18 @@ function ForgotPass() {
         screenSet: 'Online_Medical-RegistrationLogin',
         startScreen: 'gigya-reset-password-screen',
         customLang: customLangParams,
+        onAfterSubmit: backtologin
         //containerID: 'divsignin'
     });
     
+}
+
+function backtologin() {
+
+    document.getElementById('forgotback').onclick = function () {
+        window.location = 'index.html';
+    };
+
 }
 
 function passwordreset() {
